@@ -1,5 +1,6 @@
 
 import {promiseImage} from './datas.js'
+import { loadImageSelectOptions } from './pages/editor/editor.js';
 console.log("coucoutest");
 var wrapper;
 
@@ -59,6 +60,7 @@ function loadDOMEditor() {
   });
   Promise.all([promiseImage, promiseLoadingPage]).then(arrayDesReponses=>{
     console.log('tous les chargements sont effectués',arrayDesReponses)
+    loadImageSelectOptions(arrayDesReponses[0])
   })
 }
 function loadDOMThumbnail() {

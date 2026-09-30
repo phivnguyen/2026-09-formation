@@ -1,4 +1,4 @@
-const loadImageSelectOptions=()=>{
+export const loadImageSelectOptions=(images)=>{
   const select=document.forms['meme-form']['imageId']
   select.innerHTML=''
   images.forEach((image) => {
@@ -8,7 +8,7 @@ const loadImageSelectOptions=()=>{
     opt.textContent=image.name;
     select.appendChild(opt)
  
-    })
+    });
 
 
-}
+};

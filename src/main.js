@@ -49,7 +49,7 @@ function loadDOMEditor() {
   loadWrapperContent('/src/pages/editor/editor.html');
 }
 function loadDOMThumbnail() {
-  wrapper.innerHTML = "<h1>Thumbnail</h1>";
+  loadWrapperContent('/src/pages/thumbnail/thumbnail.html');
 }
 
 function loadDOMHome() {
@@ -58,14 +58,17 @@ function loadDOMHome() {
 
 /**
  * fonction de chargement du wrapper par une page html provenant d'une adrese en param
- * @param {*} pageUrl url de la page html à charger par appel http
+ * @param {string} pageUrl url de la page html à charger par appel http
+ * @returns {void} aucun retour
  */
 
 const loadWrapperContent=(pageUrl)=>{
 
-    const promise=fetch(pageUrl).then((response)=>{return response.text()})
-     promise.then(html=>{wrapper.innerHTML = html})
-
-
+    const promise=fetch(pageUrl).then((response)=>{
+      return response.text()
+    });
+     promise.then(html=>{
+      wrapper.innerHTML = html
+    });
 
 }

@@ -46,19 +46,26 @@ function constructMainRouteContent(path) {
 }
 
 function loadDOMEditor() {
-  wrapper.innerHTML = "<h1>Editor</h1>";
+  loadWrapperContent('/src/pages/editor/editor.html');
 }
 function loadDOMThumbnail() {
   wrapper.innerHTML = "<h1>Thumbnail</h1>";
 }
 
 function loadDOMHome() {
-  wrapper.innerHTML = "<h1>Home</h1>";
+  loadWrapperContent('/src/pages/home/home.html');
 }
 
+/**
+ * fonction de chargement du wrapper par une page html provenant d'une adrese en param
+ * @param {*} pageUrl url de la page html à charger par appel http
+ */
 
-function loadDOMHome() {
-  const promise=fetch('/src/pages/home/home.html').then((response)=>{return response.text()})
-  promise.then(html=>{wrapper.innerHTML = html})
-   
+const loadWrapperContent=(pageUrl)=>{
+
+    const promise=fetch(pageUrl).then((response)=>{return response.text()})
+     promise.then(html=>{wrapper.innerHTML = html})
+
+
+
 }

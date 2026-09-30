@@ -1,5 +1,5 @@
 
-import {images} from './datas.js'
+import {promiseImage} from './datas.js'
 console.log("coucoutest");
 var wrapper;
 
@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
   wrapper = document.querySelector("#wrapper");
   initNavbar();
   constructMainRouteContent(location.pathname);
+  promiseImage.then(images => {
+    console.log('images',images)
+  })
 });
 
 //fonctions:
@@ -48,7 +51,15 @@ function constructMainRouteContent(path) {
 }
 
 function loadDOMEditor() {
-  loadWrapperContent('/src/pages/editor/editor.html');
+  const promiseLoadingPage=loadWrapperContent(
+    '/src/pages/editor/editor.html'
+  );
+  promiseLoadingPage.then((r) => {
+    console.log('fin de chargement Editor');
+  });
+  Promise.all([promiseImage, promiseLoadingPage]).then(arrayDesReponses=>{
+    console.log('tous les chargements sont effectués',arrayDesReponses)
+  })
 }
 function loadDOMThumbnail() {
   loadWrapperContent('/src/pages/thumbnail/thumbnail.html');
@@ -61,18 +72,20 @@ function loadDOMHome() {
 /**
  * fonction de chargement du wrapper par une page html provenant d'une adrese en param
  * @param {string} pageUrl url de la page html à charger par appel http
- * @returns {void} aucun retour
+ * @param {Function?} callback excution post chargement DOM
+ * @returns {Promise<HTMLElement} aucun retour
  */
 
 const loadWrapperContent=(pageUrl)=>{
     const promise=fetch(pageUrl).then((response)=>{
       return response.text()
     });
-     promise.then(html=>{
-      wrapper.innerHTML = html
+    return  promise.then(html=>{
+      wrapper.innerHTML = html;
+      return wrapper;
     });
 
-}
+};
 
 
 

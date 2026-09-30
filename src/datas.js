@@ -1,4 +1,4 @@
-const images=[]
+export const images=[]
 
 //ajout d'images dans le tableau
 const loadDatas=()=>{

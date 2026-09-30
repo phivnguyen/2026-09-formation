@@ -1,6 +1,6 @@
+
+import {images} from './datas.js'
 console.log("coucoutest");
-
-
 var wrapper;
 
 // donne le temps actuel dans le footer:

@@ -1,4 +1,6 @@
 console.log("coucoutest");
+
+
 var wrapper;
 
 // donne le temps actuel dans le footer:
@@ -63,7 +65,6 @@ function loadDOMHome() {
  */
 
 const loadWrapperContent=(pageUrl)=>{
-
     const promise=fetch(pageUrl).then((response)=>{
       return response.text()
     });
@@ -72,3 +73,6 @@ const loadWrapperContent=(pageUrl)=>{
     });
 
 }
+
+
+

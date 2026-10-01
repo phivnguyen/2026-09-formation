@@ -1,4 +1,5 @@
 import { promiseImage } from "./datas";
+import { promiseMemes } from "./datas";
 
 
 

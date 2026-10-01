@@ -1,5 +1,5 @@
 
-import {promiseImage} from './datas.js'
+import {promiseImage, promiseMemes} from './datas.js'
 import { fillForm, loadImageSelectOptions } from './pages/editor/editor.js';
 console.log("coucoutest");
 var wrapper;
@@ -74,7 +74,28 @@ function loadDOMEditor() {
   })
 }
 function loadDOMThumbnail() {
-  loadWrapperContent('/src/pages/thumbnail/thumbnail.html');
+  const promiseLoadingPage=loadWrapperContent(
+    '/src/pages/thumbnail/thumbnail.html'
+  );
+  promiseLoadingPage.then((r) => {
+    console.log('fin de chargement thumbnails');
+  });
+  Promise.all([promiseMemes, promiseLoadingPage]).then(
+    (arrayDesReponses)=>{
+    console.log('tous les chargements Thumbnails sont effectués',arrayDesReponses)
+    const thumbanailDiv=document.querySelector('#thumbnail');
+    arrayDesReponses[0].forEach((meme)=>{
+      const div=document.createElement("div");
+      div.className ="preview";
+      const h3 = document.createElement("h3");
+      h3.innerHTML = meme.titre;
+      div.appendChild(h3);
+
+      div.appendChild(meme.getSVGNode());
+      thumbanailDiv.appendChild(div);
+
+    });
+});
 }
 
 function loadDOMHome() {

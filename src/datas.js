@@ -11,3 +11,6 @@ const loadDatas = () => {
   })*/
 }
 export const promiseImage=loadDatas();
+
+
+

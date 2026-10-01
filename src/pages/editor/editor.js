@@ -28,11 +28,19 @@ export const fillForm=()=>{
       input.checked = current[name];
       input.addEventListener("change", (evt) => {
         current[name] = input.checked;
+        const svg=current.getSVGNode()
+        const viewer=document.querySelector("#viewer")
+        viewer.innerText = ''
+        viewer.appendChild(svg)
     });
   } else { 
       input.value = current[name];
       input.addEventListener("input", (evt) => {
         current[name] = input.value;
+         const svg=current.getSVGNode()
+        const viewer=document.querySelector("#viewer")
+        viewer.innerText = ''
+        viewer.appendChild(svg)
     });
   }
   }

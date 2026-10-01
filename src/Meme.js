@@ -8,7 +8,7 @@
       "fontSize"= 30;
       "underline"= false;
       "italic"= false;
-      "imageId"= -1; //par defaut pas d'image séléctionné
+      "imageId"= -1; //par defaut pas d'image séléctionnée
       "color"= "#000000";
       "frameSizeX"= 0;
       "frameSizeY"= 0;

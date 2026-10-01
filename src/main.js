@@ -1,10 +1,12 @@
 
 import {promiseImage} from './datas.js'
-import { loadImageSelectOptions } from './pages/editor/editor.js';
+import { fillForm, loadImageSelectOptions } from './pages/editor/editor.js';
 console.log("coucoutest");
 var wrapper;
 
-// donne le temps actuel dans le footer:
+/**
+ * donne le temps actuel dans le footer:
+ */
 function LoadDate() {
   var footer = document.querySelector("footer");
   setInterval(function () {
@@ -12,7 +14,9 @@ function LoadDate() {
   }, 1000);
 }
 
-//chargement du DOM:
+/**
+ * chargement du DOM:
+ */
 document.addEventListener("DOMContentLoaded", function () {
   LoadDate();
   wrapper = document.querySelector("#wrapper");
@@ -23,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 });
 
-//fonctions:
+/**
+ * fonctions:
+ */
 function initNavbar() {
   var links = document.querySelectorAll("nav a");
   links.forEach(function (link) {
@@ -36,7 +42,9 @@ function initNavbar() {
   });
 }
 
-//fonction pour qu'en fonction du pathname dans l'url cela change le wrapper
+/**
+ * fonction pour qu'en fonction du pathname dans l'url cela change le wrapper
+ */
 function constructMainRouteContent(path) {
   switch (path) {
     case "/editor":
@@ -61,6 +69,8 @@ function loadDOMEditor() {
   Promise.all([promiseImage, promiseLoadingPage]).then(arrayDesReponses=>{
     console.log('tous les chargements sont effectués',arrayDesReponses)
     loadImageSelectOptions(arrayDesReponses[0])
+    fillForm();
+
   })
 }
 function loadDOMThumbnail() {
@@ -88,6 +98,5 @@ const loadWrapperContent=(pageUrl)=>{
     });
 
 };
-
 
 
